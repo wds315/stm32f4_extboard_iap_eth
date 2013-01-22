@@ -314,6 +314,8 @@ void LCD_ClosedPolyLine(pPoint Points, uint16_t PointCount);
 void LCD_ClosedPolyLineRelative(pPoint Points, uint16_t PointCount);
 void LCD_FillPolyLine(pPoint Points, uint16_t PointCount);
 void ReverseLCD(void);
+void LCD_DisplayHanzi(uint16_t Xpos, uint16_t Ypos, const char *hz);
+
 /**
   * @}
   */ 
