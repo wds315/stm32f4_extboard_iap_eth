@@ -1,17 +1,32 @@
 # Object files
 *.o
+*.iex
+*.crf
+*.d
+*.__i
+*.lst
+*.map
+*.axf
+*.plg
+*.lnp
+*.sct
+*.tra
 
 # Libraries
-*.lib
+#*.lib
 *.a
 
 # Shared objects (inc. Windows DLLs)
-*.dll
+#*.dll
 *.so
 *.so.*
 *.dylib
 
 # Executables
-*.exe
+#*.exe
 *.out
 *.app
+
+# Backup files
+*.bak
+
