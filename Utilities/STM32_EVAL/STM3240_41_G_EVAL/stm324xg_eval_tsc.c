@@ -141,7 +141,7 @@ int Read_X(void)
     int i;
     WR_CMD(CHX);
    // while(TP_BUSY);
-    Delayus(5);
+    Delayus(10);
     i=RD_AD();
     return i;   
 }
@@ -151,7 +151,7 @@ int Read_Y(void)
     int i;
     WR_CMD(CHY);
     //while(TP_BUSY);
-    Delayus(5);
+    Delayus(10);
     i=RD_AD();
     return i;    
 }

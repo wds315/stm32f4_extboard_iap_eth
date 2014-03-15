@@ -115,20 +115,26 @@ GPIO_TypeDef* COM_RX_PORT[COMn] = {EVAL_COM1_RX_GPIO_PORT};
 const uint32_t COM_USART_CLK[COMn] = {EVAL_COM1_CLK};
 
 const uint32_t COM_TX_PORT_CLK[COMn] = {EVAL_COM1_TX_GPIO_CLK};
- 
-const uint32_t COM_RX_PORT_CLK[COMn] = {EVAL_COM1_RX_GPIO_CLK};
-
 const uint16_t COM_TX_PIN[COMn] = {EVAL_COM1_TX_PIN};
-
-const uint16_t COM_RX_PIN[COMn] = {EVAL_COM1_RX_PIN};
- 
 const uint16_t COM_TX_PIN_SOURCE[COMn] = {EVAL_COM1_TX_SOURCE};
-
-const uint16_t COM_RX_PIN_SOURCE[COMn] = {EVAL_COM1_RX_SOURCE};
- 
 const uint16_t COM_TX_AF[COMn] = {EVAL_COM1_TX_AF};
- 
+const uint32_t COM_RX_PORT_CLK[COMn] = {EVAL_COM1_RX_GPIO_CLK};
+const uint16_t COM_RX_PIN[COMn] = {EVAL_COM1_RX_PIN};
+const uint16_t COM_RX_PIN_SOURCE[COMn] = {EVAL_COM1_RX_SOURCE};
 const uint16_t COM_RX_AF[COMn] = {EVAL_COM1_RX_AF};
+
+#ifdef USE_RSTCTS
+GPIO_TypeDef* COM_RTS_PORT[COMn] = {EVAL_COM1_RTS_GPIO_PORT};
+GPIO_TypeDef* COM_CTS_PORT[COMn] = {EVAL_COM1_CTS_GPIO_PORT};
+const uint32_t COM_RTS_PORT_CLK[COMn] = {EVAL_COM1_RTS_GPIO_CLK};
+const uint16_t COM_RTS_PIN[COMn] = {EVAL_COM1_RTS_PIN};
+const uint16_t COM_RTS_PIN_SOURCE[COMn] = {EVAL_COM1_RTS_SOURCE};
+const uint16_t COM_RTS_AF[COMn] = {EVAL_COM1_RTS_AF};
+const uint32_t COM_CTS_PORT_CLK[COMn] = {EVAL_COM1_CTS_GPIO_CLK};
+const uint16_t COM_CTS_PIN[COMn] = {EVAL_COM1_CTS_PIN};
+const uint16_t COM_CTS_PIN_SOURCE[COMn] = {EVAL_COM1_CTS_SOURCE};
+const uint16_t COM_CTS_AF[COMn] = {EVAL_COM1_CTS_AF};
+#endif
 
 DMA_InitTypeDef    sEEDMA_InitStructure; 
 NVIC_InitTypeDef   NVIC_InitStructure;
@@ -324,7 +330,11 @@ void STM_EVAL_COMInit(COM_TypeDef COM, USART_InitTypeDef* USART_InitStruct)
   GPIO_InitTypeDef GPIO_InitStructure;
 
   /* Enable GPIO clock */
+#ifdef USE_RSTCTS
+  RCC_AHB1PeriphClockCmd(COM_TX_PORT_CLK[COM] | COM_RX_PORT_CLK[COM] | COM_RTS_PORT_CLK[COM] | COM_CTS_PORT_CLK[COM], ENABLE);
+#else
   RCC_AHB1PeriphClockCmd(COM_TX_PORT_CLK[COM] | COM_RX_PORT_CLK[COM], ENABLE);
+#endif
 
   if (COM == COM1)
   {
@@ -337,6 +347,14 @@ void STM_EVAL_COMInit(COM_TypeDef COM, USART_InitTypeDef* USART_InitStruct)
 
   /* Connect PXx to USARTx_Rx*/
   GPIO_PinAFConfig(COM_RX_PORT[COM], COM_RX_PIN_SOURCE[COM], COM_RX_AF[COM]);
+
+#ifdef USE_RSTCTS
+  /* Connect PXx to USARTx_RTS*/
+  GPIO_PinAFConfig(COM_RTS_PORT[COM], COM_RTS_PIN_SOURCE[COM], COM_RTS_AF[COM]);
+
+  /* Connect PXx to USARTx_CTS*/
+  GPIO_PinAFConfig(COM_CTS_PORT[COM], COM_CTS_PIN_SOURCE[COM], COM_CTS_AF[COM]);
+#endif
 
   /* Configure USART Tx as alternate function  */
   GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
@@ -351,6 +369,17 @@ void STM_EVAL_COMInit(COM_TypeDef COM, USART_InitTypeDef* USART_InitStruct)
   GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF;
   GPIO_InitStructure.GPIO_Pin = COM_RX_PIN[COM];
   GPIO_Init(COM_RX_PORT[COM], &GPIO_InitStructure);
+
+#ifdef USE_RSTCTS
+  GPIO_InitStructure.GPIO_Pin = COM_RTS_PIN[COM];
+  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+  GPIO_Init(COM_RTS_PORT[COM], &GPIO_InitStructure);
+
+  /* Configure USART CTS as alternate function  */
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF;
+  GPIO_InitStructure.GPIO_Pin = COM_CTS_PIN[COM];
+  GPIO_Init(COM_CTS_PORT[COM], &GPIO_InitStructure);
+#endif
 
   /* USART configuration */
   USART_Init(COM_USART[COM], USART_InitStruct);

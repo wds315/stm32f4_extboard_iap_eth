@@ -65,7 +65,7 @@ void ETH_BSP_Config(void)
 
   /* Configure the EXTI for Ethernet link status. */
   Eth_Link_EXTIConfig();
-
+  
   /* Configure Systick clock source as HCLK */
   SysTick_CLKSourceConfig(SysTick_CLKSource_HCLK);
 
@@ -73,6 +73,23 @@ void ETH_BSP_Config(void)
   RCC_GetClocksFreq(&RCC_Clocks);
   SysTick_Config(RCC_Clocks.HCLK_Frequency / 100);  
 }
+//配置网卡LED灯的指示模式，在ETH_Init函数调用前使用
+//DP83848实际还有更多的功能寄存器，都是通过类似的读、写方法进行的。
+//这里仅仅是一个LED灯的例子
+static void ETH_SetLED()
+{
+    uint16_t reg_value;
+
+    //0x18是强制使用LED，不写也行，默认就是0
+    ETH_WritePHYRegister(DP83848_PHY_ADDRESS, 0x18, 0x0000);
+
+    //0x19是配置LED功能,bit5/6/7 表示灯的类型，看手册写了
+    reg_value = ETH_ReadPHYRegister(DP83848_PHY_ADDRESS, 0x19);
+    reg_value &= 0x00E0;        //清除bit5/bit6
+    reg_value |= 0x00C0;        //或者其他的数据，试试看
+    ETH_WritePHYRegister(DP83848_PHY_ADDRESS, 0x19, reg_value);
+}
+
 
 /**
   * @brief  Configures the Ethernet Interface
@@ -137,6 +154,8 @@ static void ETH_MACDMA_Config(void)
   ETH_InitStructure.ETH_TxDMABurstLength = ETH_TxDMABurstLength_32Beat;
   ETH_InitStructure.ETH_DMAArbitration = ETH_DMAArbitration_RoundRobin_RxTx_2_1;
 
+  ETH_SetLED();
+  
   /* Configure Ethernet */
   EthInitStatus = ETH_Init(&ETH_InitStructure, DP83848_PHY_ADDRESS);
 }

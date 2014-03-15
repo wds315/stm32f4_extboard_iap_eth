@@ -165,6 +165,7 @@
           <EnabledFlag>1</EnabledFlag>
           <Address>134234282</Address>
           <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
@@ -239,7 +240,7 @@
       <Focus>0</Focus>
       <ColumnNumber>32</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>253</TopLine>
+      <TopLine>252</TopLine>
       <CurrentLine>253</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\src\system_stm32f4xx.c</PathWithFileName>
@@ -260,7 +261,7 @@
       <Focus>0</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>192</TopLine>
+      <TopLine>191</TopLine>
       <CurrentLine>192</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\startup_stm32f4xx.s</PathWithFileName>
@@ -281,7 +282,7 @@
       <Focus>0</Focus>
       <ColumnNumber>4</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>178</TopLine>
+      <TopLine>179</TopLine>
       <CurrentLine>185</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\src\tftpserver.c</PathWithFileName>
@@ -309,7 +310,7 @@
       <Focus>0</Focus>
       <ColumnNumber>27</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>370</TopLine>
+      <TopLine>369</TopLine>
       <CurrentLine>370</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\src\httpserver.c</PathWithFileName>
@@ -321,10 +322,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>23</ColumnNumber>
+      <ColumnNumber>21</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>55</TopLine>
-      <CurrentLine>66</CurrentLine>
+      <TopLine>56</TopLine>
+      <CurrentLine>67</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\src\main.c</PathWithFileName>
       <FilenameWithoutPath>main.c</FilenameWithoutPath>
@@ -335,10 +336,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>35</ColumnNumber>
+      <ColumnNumber>31</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>168</TopLine>
-      <CurrentLine>173</CurrentLine>
+      <TopLine>169</TopLine>
+      <CurrentLine>194</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\src\netconf.c</PathWithFileName>
       <FilenameWithoutPath>netconf.c</FilenameWithoutPath>
@@ -1002,7 +1003,7 @@
       <Focus>0</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>1221</TopLine>
+      <TopLine>1222</TopLine>
       <CurrentLine>1225</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\..\Libraries\STM32F4x7_ETH_Driver\src\stm32f4x7_eth.c</PathWithFileName>
@@ -1023,7 +1024,7 @@
       <Focus>0</Focus>
       <ColumnNumber>35</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>92</TopLine>
+      <TopLine>91</TopLine>
       <CurrentLine>92</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\..\Utilities\STM32_EVAL\STM3240_41_G_EVAL\stm324xg_eval_lcd.c</PathWithFileName>
@@ -1037,7 +1038,7 @@
       <Focus>0</Focus>
       <ColumnNumber>5</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>156</TopLine>
+      <TopLine>155</TopLine>
       <CurrentLine>156</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\..\Utilities\STM32_EVAL\STM3240_41_G_EVAL\stm324xg_eval.c</PathWithFileName>

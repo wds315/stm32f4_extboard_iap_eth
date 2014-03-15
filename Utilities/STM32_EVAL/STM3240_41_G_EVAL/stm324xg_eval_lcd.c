@@ -206,7 +206,7 @@ void STM324xG_LCD_Init(void)
   /* Read the LCD ID */
   lcdid = LCD_ReadReg(0x00);
 
-  if (lcdid == 0x7783)
+  if (lcdid == 0x7783 || lcdid == 0x9325)
   {
     LCD_WriteReg(0x0001, 0x0100);               /* Set SS bit                         */
 	LCD_WriteReg(0x0002, 0x0700);
